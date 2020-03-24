@@ -16,6 +16,8 @@
 	<description>선별진료소 공공데이터 Rest_API v1/2020-03-17</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 	</properties>
 
