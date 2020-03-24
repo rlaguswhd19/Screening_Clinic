@@ -64,7 +64,7 @@ public class AppConfig {
 					.address(nextRecord[5])
 					.calling(nextRecord[6])
 					.build();
-//			
+			
 			clinicRepository.save(clinic);
 		}
 	}
