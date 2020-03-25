@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 //import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 
@@ -18,6 +20,7 @@ public class ClinicService {
 	public ResponseEntity getClinicsList(Pageable pageable, PagedResourcesAssembler<Clinic> assembler) {
 		Page<Clinic> page = clinicRepository.findAll(pageable);
 		var pageModels = assembler.toModel(page);
+		pageModels.add(new Link("/docs/index.html#resources-clinic-lists").withRel("profile"));
 		
 		return ResponseEntity.ok(pageModels);
 	}

@@ -60,13 +60,14 @@ public class ClinicControllerTest {
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("page").exists())
-//		.andExpect(jsonPath("profile").exists())
+		.andExpect(jsonPath("_links.profile").exists())
 		.andDo(document("lists-clinic",
 				links(
 						linkWithRel("first").description("link to firstPage for clinicLists"),
 						linkWithRel("self").description("link to self"),
 						linkWithRel("next").description("link to nextPage for clinicLists"),
-						linkWithRel("last").description("link to lastPage for clinicLists")
+						linkWithRel("last").description("link to lastPage for clinicLists"),
+						linkWithRel("profile").description("link to profile")
 				),
 				requestHeaders(
 						headerWithName(HttpHeaders.ACCEPT).description("accept header"),
@@ -80,7 +81,6 @@ public class ClinicControllerTest {
 						parameterWithName("size").description("The size of page"),
 						parameterWithName("sort").description("The page sort")
 				)
-				
 		))
 		;
 	}

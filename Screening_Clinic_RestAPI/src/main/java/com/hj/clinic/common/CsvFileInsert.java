@@ -24,7 +24,7 @@ public class CsvFileInsert {
 
 	public void dataInsert() throws CsvValidationException, IOException {
 		CSVReader csvReader = new CSVReader(
-				new InputStreamReader(new FileInputStream(appProperties.getCsvPath()), "EUC-KR"));
+				new InputStreamReader(new FileInputStream(appProperties.getCsvPath()), "UTF-8"));
 
 		String[] nextRecord;
 		int index = 0;
@@ -34,7 +34,7 @@ public class CsvFileInsert {
 				index++;
 				continue;
 			}
-
+			
 			Clinic clinic = Clinic.builder().clinicCollection(ClinicCollection.valueOf(nextRecord[1]))
 					.city(nextRecord[2]).town(nextRecord[3]).clinicName(nextRecord[4]).address(nextRecord[5])
 					.calling(nextRecord[6]).build();
