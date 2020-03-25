@@ -14,10 +14,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
+@AllArgsConstructor @NoArgsConstructor
+@Setter @Getter
 @EqualsAndHashCode(of = "id")
 @Entity
 public class Clinic {

@@ -121,11 +121,11 @@ operation::lists-clinic-bycity[snippets='http-request,http-response,links']
 operation::create-event[snippets='request-fields,curl-request,http-request,request-headers,http-response,response-headers,response-fields,links']
 
 [[resources-get-an-event]]
-=== 이벤트 조회
+=== 진료소 조회
 
-`Get` 요청을 사용해서 기존 이벤트 하나를 조회할 수 있다.
+`Get` 요청을 사용해서 id로 하나의 진료소를 조회할 수 있다.
 
-operation::get-an-event[snippets='http-request,curl-request,http-response,request-body,response-body']
+operation::get-clinic[snippets='http-request,http-response,links']
 
 [[resources-events-update]]
 === 이벤트 수정
