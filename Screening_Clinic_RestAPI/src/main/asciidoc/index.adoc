@@ -97,14 +97,21 @@ operation::index[snippets='response-body,http-response,links']
 [[resources-clinics]]
 == 진료소
 
-이벤트 리소스는 이벤트를 만들거나 조회할 때 사용한다.
+진료소 리소스는 진료소를 만들거나 조회할 때 사용한다.
 
 [[resources-clinic-lists]]
 === 진료소 목록 조회
 
 `GET` 요청을 사용하여 서비스의 모든 진료소를 조회할 수 있다.
 
-operation::lists-clinic[snippets='http-request,request-headers,request-parameters,http-response,response-headers,response-body',links]
+operation::lists-clinic[snippets='http-request,request-headers,request-parameters,http-response,response-headers,response-body,links']
+
+[[resources-clinic-lists-bycity]]
+=== 진료소 목록 특정도시로 조회
+
+`GET` 요청을 사용하여 서비스의 특정도시의 진료소를 조회할 수 있다.
+
+operation::lists-clinic-bycity[snippets='http-request,http-response,links']
 
 [[resources-events-create]]
 === 이벤트 생성

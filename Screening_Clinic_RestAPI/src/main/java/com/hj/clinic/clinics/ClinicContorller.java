@@ -23,8 +23,8 @@ public class ClinicContorller {
 		return clinicService.getClinicsList(pageable, assembler);
 	}
 	
-	@GetMapping("/{id")
-	public ResponseEntity getClinicById(@PathVariable int id) {
-		return clinicService.getClinicById(id);
+	@GetMapping("/{city}")
+	public ResponseEntity getClinicByCity(@PathVariable String city, Pageable pageable, PagedResourcesAssembler<Clinic> assembler) {
+		return clinicService.getClinicByCity(city, pageable, assembler);
 	}
 }

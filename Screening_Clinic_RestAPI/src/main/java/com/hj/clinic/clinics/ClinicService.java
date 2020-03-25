@@ -19,14 +19,18 @@ public class ClinicService {
 	
 	public ResponseEntity getClinicsList(Pageable pageable, PagedResourcesAssembler<Clinic> assembler) {
 		Page<Clinic> page = clinicRepository.findAll(pageable);
-		var pageModels = assembler.toModel(page);
+		var pageModels = assembler.toModel(page, c -> new ClinicModel(c));
 		pageModels.add(new Link("/docs/index.html#resources-clinic-lists").withRel("profile"));
 		
 		return ResponseEntity.ok(pageModels);
 	}
 
-	public ResponseEntity getClinicById(int id) {
-		return ResponseEntity.ok(clinicRepository.findById(id));
+	public ResponseEntity getClinicByCity(String city, Pageable pageable, PagedResourcesAssembler<Clinic> assembler) {
+		Page<Clinic> page = clinicRepository.findByCity(city, pageable);
+		var pageModels = assembler.toModel(page, c -> new ClinicModel(c));
+		pageModels.add(new Link("/docs/index.html#resources-clinic-lists-city").withRel("profile"));
+		
+		return ResponseEntity.ok(pageModels);
 	}
 
 }

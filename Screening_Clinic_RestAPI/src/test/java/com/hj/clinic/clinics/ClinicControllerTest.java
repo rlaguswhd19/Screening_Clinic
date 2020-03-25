@@ -34,6 +34,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.hj.clinic.common.RestDocsConfiguration;
+import com.hj.clinic.common.TestDescription;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -48,19 +49,20 @@ public class ClinicControllerTest {
 	
 	@Test
 	@Transactional
-	// 100개씩 clinic을 조회하기
+	@TestDescription("100개씩 진료소를 가져오기")
 	public void getClinicList() throws Exception {
 		this.mockMvc.perform(get("/api/clinics/")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.accept(MediaTypes.HAL_JSON_VALUE)
 				.param("page", "0")
-				.param("size", "10")
+				.param("size", "100")
 				.param("sort", "id,DESC")
 				)
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("page").exists())
 		.andExpect(jsonPath("_links.profile").exists())
+		.andExpect(jsonPath("_embedded.clinicList[0]._links.self").exists())
 		.andDo(document("lists-clinic",
 				links(
 						linkWithRel("first").description("link to firstPage for clinicLists"),
@@ -80,6 +82,33 @@ public class ClinicControllerTest {
 						parameterWithName("page").description("The page to retrieve"),
 						parameterWithName("size").description("The size of page"),
 						parameterWithName("sort").description("The page sort")
+				)
+		))
+		;
+	}
+	
+	@Test
+	@Transactional
+	@TestDescription("도시로 진료소 목록 가져오기")
+	public void getClinicList_City() throws Exception {
+		String city = "서울";
+		this.mockMvc.perform(get("/api/clinics/"+city)
+				.param("page", "0")
+				.param("size", "10")
+				.param("sort", "id,DESC")
+				)
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("page").exists())
+		.andExpect(jsonPath("_links.profile").exists())
+		.andExpect(jsonPath("_embedded.clinicList[0]._links.self").exists())
+		.andDo(document("lists-clinic-bycity",
+				links(
+						linkWithRel("first").description("link to firstPage for clinicLists"),
+						linkWithRel("self").description("link to self"),
+						linkWithRel("next").description("link to nextPage for clinicLists"),
+						linkWithRel("last").description("link to lastPage for clinicLists"),
+						linkWithRel("profile").description("link to profile")
 				)
 		))
 		;
