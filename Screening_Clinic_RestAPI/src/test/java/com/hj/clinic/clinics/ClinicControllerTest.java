@@ -1,19 +1,19 @@
 package com.hj.clinic.clinics;
 
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
-import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
-import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
-import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
+import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.subsectionWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.relaxedResponseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -55,7 +55,7 @@ public class ClinicControllerTest {
 		
 		this.mockMvc.perform(get("/api/clinics/" + id)
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
-				.accept(MediaTypes.HAL_JSON_VALUE)
+				.accept(MediaTypes.HAL_JSON)
 				)
 			.andDo(print())
 			.andExpect(status().isOk())
@@ -76,16 +76,17 @@ public class ClinicControllerTest {
 					),
 					responseHeaders(
 							headerWithName(HttpHeaders.CONTENT_TYPE).description("content type header")
+					),
+					responseFields(
+							fieldWithPath("id").description("연변"),
+							fieldWithPath("clinicCollection").description("검체채취 가능여부"),
+							fieldWithPath("city").description("시도"),
+							fieldWithPath("town").description("시군구"),
+							fieldWithPath("clinicName").description("의료기관명"),
+							fieldWithPath("address").description("주소"),
+							fieldWithPath("calling").description("대표 전화번호"),
+							subsectionWithPath("_links").description("links to clinics")
 					)
-					//					responseFields(
-//							fieldWithPath("id").description("연변"),
-//							fieldWithPath("clinicCollection").description("검체채취 가능여부"),
-//							fieldWithPath("city").description("시도"),
-//							fieldWithPath("town").description("시군구"),
-//							fieldWithPath("clinicName").description("의료기관명"),
-//							fieldWithPath("address").description("주소"),
-//							fieldWithPath("calling").description("대표 전화번호")
-//					)
 			))
 			;
 	}

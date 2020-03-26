@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping(value = "/api/clinics", produces = MediaTypes.HAL_JSON_VALUE)
+@RequestMapping(value = "/api/clinics", produces = MediaTypes.HAL_JSON_VALUE+";charset=UTF-8")
 public class ClinicContorller {
 	
 	@Autowired

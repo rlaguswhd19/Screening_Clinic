@@ -3,6 +3,7 @@ package com.hj.clinic.common;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class CsvFileInsert {
 
 	public void dataInsert() throws CsvValidationException, IOException {
 		CSVReader csvReader = new CSVReader(
-				new InputStreamReader(new FileInputStream(appProperties.getCsvPath()), "UTF-8"));
+				new InputStreamReader(new FileInputStream(appProperties.getCsvPath()), "utf-8"));
 
 		String[] nextRecord;
 		int index = 0;
