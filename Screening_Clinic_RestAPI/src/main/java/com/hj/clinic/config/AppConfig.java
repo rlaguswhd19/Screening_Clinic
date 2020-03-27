@@ -6,7 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.hj.clinic.common.CsvFileInsert;
+import com.hj.clinic.csv.CsvFileInsert;
 
 @Configuration
 public class AppConfig {

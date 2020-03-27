@@ -1,4 +1,4 @@
-package com.hj.clinic.common;
+package com.hj.clinic.csv;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.hj.clinic.clinics.Clinic;
 import com.hj.clinic.clinics.ClinicCollection;
 import com.hj.clinic.clinics.ClinicRepository;
+import com.hj.clinic.common.AppProperties;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -25,7 +26,7 @@ public class CsvFileInsert {
 
 	public void dataInsert() throws CsvValidationException, IOException {
 		CSVReader csvReader = new CSVReader(
-				new InputStreamReader(new FileInputStream(appProperties.getCsvPath()), "utf-8"));
+				new InputStreamReader(new FileInputStream(appProperties.getCsvPath()), "EUC-KR"));
 
 		String[] nextRecord;
 		int index = 0;
