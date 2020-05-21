@@ -1,15 +1,11 @@
 package com.hj.clinic.csvfile;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hj.clinic.common.AppProperties;
 import com.hj.clinic.common.TestDescription;
-import com.opencsv.CSVReader; 
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
