@@ -23,7 +23,8 @@ module.exports = {
                 trailingComma: "all",
                 printWidth: 80,
                 bracketSpacing: true,
-                arrowParens: "avoid"
+                arrowParens: "avoid",
+                endOfLine: "auto"
             }
         ],
         "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
